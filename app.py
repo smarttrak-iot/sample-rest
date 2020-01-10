@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, request,render_template
 from flask_restful import Api
 
 
@@ -15,12 +15,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'smarttrak'
 api = Api(app)
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 #jwt = JWT(app, authenticate, identity)  # /auth
 
 #api.add_resource(Store, '/store/<string:name>')
 #api.add_resource(Item, '/item/<string:name>')
 #api.add_resource(ItemList, '/items')
 #api.add_resource(StoreList, '/stores')
+
 api.add_resource(Device, '/device/<string:devId>')
 api.add_resource(DeviceList, '/devices')
 

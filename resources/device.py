@@ -24,7 +24,7 @@ class Device(Resource):
         device = DeviceModel.find_by_name(devId)
         if device:
             return device.json()
-        return {'message': 'Item not found'}, 404
+        return {'message': 'Device not found'}, 404
 
     def post(self, devId):
         if DeviceModel.find_by_name(devId):
