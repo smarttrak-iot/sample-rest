@@ -33,7 +33,7 @@ class Device(Resource):
 
         data = Device.parser.parse_args()
 
-        device = ItemModel(name, data['power'],data['voltage'],data['current'])
+        device = DeviceModel(name, data['power'],data['voltage'],data['current'])
 
         try:
             device.save_to_db()
