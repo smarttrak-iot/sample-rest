@@ -24,7 +24,7 @@ api = Api(app)
 api.add_resource(Device, '/device/<string:name>')
 api.add_resource(DeviceList, '/devices')
 
-api.add_resource(UserRegister, '/register')
+#api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
     from db import db
