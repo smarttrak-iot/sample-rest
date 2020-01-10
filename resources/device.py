@@ -20,35 +20,35 @@ class Device(Resource):
         )
 
 
-    def get(self, name):
-        device = DeviceModel.find_by_name(name)
+    def get(self, devId):
+        device = DeviceModel.find_by_name(devId)
         if device:
             return device.json()
         return {'message': 'Item not found'}, 404
 
-    def post(self, name):
-        if DeviceModel.find_by_name(name):
-            return {'message': "An item with name '{}' already exists.".format(name)}, 400
+    def post(self, devId):
+        if DeviceModel.find_by_name(devId):
+            return {'message': "A Device with devId '{}' already exists.".format(devId)}, 400
 
         data = Device.parser.parse_args()
 
-        device = DeviceModel(name, data['power'],data['voltage'],data['current'])
+        device = DeviceModel(devId, data['power'],data['voltage'],data['current'])
 
         try:
             device.save_to_db()
         except:
-            return {"message": "An error occurred inserting the item."}, 500
+            return {"message": "An error occurred inserting the device data."}, 500
 
         return device.json(), 201
 
 
-    def put(self, name):
+    def put(self, devId):
         data = Device.parser.parse_args()
 
-        device = DeviceModel.find_by_name(name)
+        device = DeviceModel.find_by_name(devId)
 
         if device is None:
-            device = DeviceModel(name, data['power'],data['voltage'],data['current'])
+            device = DeviceModel(devId, data['power'],data['voltage'],data['current'])
         else:
             device.power = data['power']
             device.voltage = data['voltage']
