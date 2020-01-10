@@ -8,14 +8,14 @@ class DeviceModel(db.Model):
     voltage = db.Column(db.Float(precision=2))
     current = db.Column(db.Float(precision=2))
 
-    def __init__(self, devId,power,voltage,current):
-        self.devId = devId
+    def __init__(self, name,power,voltage,current):
+        self.name = name
         self.power = power
         self.voltage = voltage
         self.current = current
 
     def json(self):
-        return {'devId': self.devId,'power': self.power,'voltage': self.voltage,'current': self.current}
+        return {'name': self.name,'power': self.power,'voltage': self.voltage,'current': self.current}
 
     @classmethod
     def find_by_name(cls, name):
