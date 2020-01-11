@@ -58,7 +58,7 @@
           <h1> Substation Devices : </h1>
           <ul>
             {% for dev in devices %}
-                <li>{{dev,dev.power,dev.voltage,dev.current}}</li>
+                <li>{{dev.devId,dev.power,dev.voltage,dev.current}}</li>
                 {% endfor %}
         {% endblock %}
 
