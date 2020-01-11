@@ -10,17 +10,17 @@
   </head>
   <body>
       <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-        <div class="jumbotron">
-          <h1> Substation Devices : </h1>
-          <ul>
-            {% for dev in devices %}
-                <li>{{dev}}</li>
-                {% endfor %}
+
 
         </div>
         </nav>
         {% block content %}
-
+        <div class="jumbotron">
+          <h1> Substation Devices : </h1>
+          <ul>
+            {% for dev in devices %}
+                <li>{{dev,dev.power}}</li>
+                {% endfor %}
         {% endblock %}
 
   </body>
