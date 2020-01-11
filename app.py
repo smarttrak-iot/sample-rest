@@ -13,7 +13,7 @@ flask_app.config['DEBUG'] = True
 flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 flask_app.secret_key = 'smarttrak'
-flask_app = Api(app)
+flask_app = Api(flask_app)
 
 @flask_app.route('/')
 def home():
