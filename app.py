@@ -6,16 +6,16 @@ from flask_restful import Api
 from models.device import DeviceModel
 from resources.device import Device, DeviceList
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
-app.config['DEBUG'] = True
+flask_app.config['DEBUG'] = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'smarttrak'
-api = Api(app)
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+flask_app.secret_key = 'smarttrak'
+flask_app = Api(app)
 
-@app.route('/')
+@flask_app.route('/')
 def home():
 
     devices = DeviceModel.query.all()
@@ -28,18 +28,18 @@ def home():
 #api.add_resource(ItemList, '/items')
 #api.add_resource(StoreList, '/stores')
 
-api.add_resource(Device, '/device/<string:devId>')
-api.add_resource(DeviceList, '/devices')
+flask_app.add_resource(Device, '/device/<string:devId>')
+flask_app.add_resource(DeviceList, '/devices')
 
 #api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
     from db import db
-    db.init_app(app)
+    db.init_app(flask_app)
 
-    if app.config['DEBUG']:
+    if flask_app.config['DEBUG']:
         @app.before_first_request
         def create_tables():
             db.create_all()
 
-    app.run(port=5000)
+    flask_app.run(port=5000)
