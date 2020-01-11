@@ -3,7 +3,7 @@ import os
 from flask import Flask, request,render_template
 from flask_restful import Api
 
-
+from models.device import DeviceModel
 from resources.device import Device, DeviceList
 
 app = Flask(__name__)
@@ -17,7 +17,9 @@ api = Api(app)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+
+    devices = DeviceModel.query.all()
+    return render_template('index.html',devices=devices)
 
 #jwt = JWT(app, authenticate, identity)  # /auth
 
