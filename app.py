@@ -28,8 +28,8 @@ def home():
 #api.add_resource(ItemList, '/items')
 #api.add_resource(StoreList, '/stores')
 
-app.add_resource(Device, '/device/<string:devId>')
-app.add_resource(DeviceList, '/devices')
+api.add_resource(Device, '/device/<string:devId>')
+api.add_resource(DeviceList, '/devices')
 
 #api.add_resource(UserRegister, '/register')
 
