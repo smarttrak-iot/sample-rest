@@ -17,7 +17,6 @@ app = Api(app)
 
 @app.route('/')
 def home():
-
     devices = DeviceModel.query.all()
     return render_template('index.html',devices=devices)
 
