@@ -13,10 +13,11 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'smarttrak'
-app = Api(app)
+api = Api(app)
 
 @app.route('/')
 def home():
+
     devices = DeviceModel.query.all()
     return render_template('index.html',devices=devices)
 
